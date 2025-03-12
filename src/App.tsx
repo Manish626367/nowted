@@ -1,17 +1,10 @@
 
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import FavoritesRoute from "./Component/Routes/FavoritesRoute";
-import HomeRoute from "./Component/Routes/HomeRoute";
-import FavoritesNoteId from "./Component/Routes/FavoritesNoteId";
-import ArchiveRoute from "./Component/Routes/ArchiveRoute";
-import ArchiveNoteIdRoute from "./Component/Routes/ArchiveNoteIdRoute";
-import DeleteRoute from "./Component/Routes/DeleteRoute";
-import DeleteNoteIdRoute from "./Component/Routes/DeleteNoteIdRoute";
-import FoldernameFolderId from "./Component/Routes/FoldernameFolderId";
-import FolderNameNoteId from "./Component/Routes/FolderNameNoteId";
 import { RefreshProvider } from "./context/ForRefresh";
 import { useState } from "react";
+import { ROUTES } from "./constants/ConstantRoute"; 
+import CommonRoutes from "./Component/Routes/CommonRoutes";
 
 function App() {
 
@@ -31,20 +24,20 @@ const isRenderFunction=()=>{
   <RefreshProvider value={{isFresh,isRender, isRenderFunction,isFreshFunction}}>
     <Router>
        
-       <Routes>
-       <Route path="/" element={<HomeRoute/>}/>
+     <Routes>
+       <Route path={ROUTES.HOME} element={<CommonRoutes/>}/>
 
-       <Route path="/favorites" element={<FavoritesRoute/>}/>
-       <Route path="/favorites/note/:noteId" element={<FavoritesNoteId/>}/>
+       <Route path={ROUTES.FAVORITE} element={<CommonRoutes/>}/>
+       <Route path={ROUTES.FAVORITE_NOTE_ID} element={<CommonRoutes/>}/>
 
-       <Route path="/Archived" element={<ArchiveRoute/>}/>
-       <Route path="/Archived/note/:noteId" element={<ArchiveNoteIdRoute/>}/>
+       <Route path={ROUTES.ARCHIVE} element={<CommonRoutes/>}/>
+       <Route path={ROUTES.ARCHIVE_NOTE_ID} element={<CommonRoutes/>}/>
 
-       <Route path="/Deleted" element={<DeleteRoute/>}/>
-       <Route path="/Deleted/note/:noteId" element={<DeleteNoteIdRoute/>}/>
+       <Route path={ROUTES.DELETE} element={<CommonRoutes/>}/>
+       <Route path={ROUTES.DELETE_NOTE_ID} element={<CommonRoutes/>}/>
 
-       <Route path="/:folderName/:folderId" element={<FoldernameFolderId/>}/>
-       <Route path="/:folderName/:folderId/note/:noteId" element={<FolderNameNoteId/>}/>
+       <Route path={ROUTES.FOLDER} element={<CommonRoutes/>}/>
+       <Route path={ROUTES.FOLDER_NOTE_ID} element={<CommonRoutes/>}/>
          
        </Routes>
      
