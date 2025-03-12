@@ -1,0 +1,177 @@
+// import axios from "axios";
+// import createFolderIcon from "../../assets/images/CreateFolderIcon.png";
+// import { useEffect, useState } from "react";
+// import openedFolder from "../../assets/images/folder_open.svg";
+// import closedFolder from "../../assets/images/folder_closed_Icon.svg";
+// import EditFolderName from "./EditFolderName";
+// import trashIcon from "../../assets/images/trashicon.svg";
+// import AddNewFolder from "./AddNewFolder";
+// import { useNavigate } from "react-router-dom";
+
+// function Folder() {
+//   interface FolderDataType {
+//     id: string;
+//     name: string;
+//   }
+
+//   const GetFolderAPI = "https://nowted-server.remotestate.com/folders";
+
+//   const [fetchedData, setfetchedData] = useState<FolderDataType[]>([]);
+
+//   const [BgColorId, setBgColorId] = useState("");
+
+//   const navigate = useNavigate();
+
+//   //   const [editId, setEditId] = useState<string | null>(null);
+
+//   //   const [editText, setEditText] = useState("");
+
+//   useEffect(() => {
+//     (async () => {
+//       try {
+//         const response = await axios.get(GetFolderAPI);
+
+//         const data = response.data.folders.map((note: FolderDataType) => ({
+//           id: note.id,
+//           name: note.name,
+//         }));
+
+//         setfetchedData(data);
+
+//         // if (data.length != 0) {
+//         //   setBgColorId(data[0].id);
+//         //   navigate(`/folders/${data[0].id}`)
+//         // }
+
+//         if (data.length!=0) {
+//           setBgColorId(data[0].id);
+//         }
+
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     })();
+//   }, []);
+
+//   const saveHandler = (id: string, newName: string) => {
+//     setfetchedData((prev) =>
+//       prev.map((folder) =>
+//         folder.id === id ? { ...folder, name: newName } : folder
+//       )
+//     );
+//   };
+
+//   //   function doubleClickHandler(id:string,name:string){
+//   //     setEditId(id);
+//   //     setEditText(name);
+//   //   }
+
+//   // const saveHandler=async()=>{
+//   //       if(!editId) return;
+//   //       setfetchedData((prevData)=>{
+//   //            return prevData.map((folder) => {
+//   //               if (folder.id === editId) {
+//   //                   return { ...folder, name: editText };
+//   //               }
+//   //               return { ...folder };
+//   //           });
+//   //       })
+//   //       setEditId(null);
+//   // }
+
+//   const setBgColor = (id: string) => {
+//     setBgColorId(id);
+//     navigate(`/folders/${id}`)
+//   };
+
+//   // delete folder
+//   const DeleteFolderFunc = async(id:string)=>{
+//     try {
+//       await axios.delete(`https://nowted-server.remotestate.com/folders/${id}`);
+//       console.log(id);
+//       console.log("deleted succesfully");
+
+//   } catch (error) {
+//       console.log(error);
+//   }
+//   }
+
+//   return (
+//     <>
+//       <div className="w-full text-gray-400 font-semibold gap-1  ">
+//         <div className="flex justify-between px-5 pb-2">
+//           <p className="text-md  ">Folders</p>
+//           <img
+//             src={createFolderIcon}
+//             onClick={()=>AddNewFolder()}
+//             className="h-6"
+//           ></img>
+//         </div>
+
+//         <div className="h-60 overflow-y-auto scrollbar-hide">
+//           {fetchedData.map((d) => {
+//             return (
+//               <div
+//                 key={d.id}
+//                 className={`flex  py-3 px-5 justify-between ${
+//                   BgColorId === d.id ? "bg-slate-900 text-white" : ""
+//                 }`}
+//               >
+//                 <button
+//                   key={d.id}
+//                   className={`flex flex-row w-full gap-4  cursor-pointer `}
+//                   onClick={() => setBgColor(d.id)}
+//                 >
+
+//                   {BgColorId === d.id ? (
+//                     <img src={openedFolder} />
+//                   ) : (
+//                     <img src={closedFolder} />
+//                   )}
+
+//                   {/* {editId === d.id ? (
+//               <input
+//                 type="text"
+//                 className="bg-transparent border-b border-gray-500 focus:outline-none text-white"
+//                 value={editText}
+//                 onChange={(e)=>setEditText(e.target.value)}
+//                 onBlur={saveHandler}
+//                 onKeyDown={(e)=> e.key === 'Enter' && saveHandler()}
+
+//               />
+//             ) : (
+//               <p onDoubleClick={() => doubleClickHandler(d.id, d.name)}>{d.name}</p>
+//             )} */}
+
+//                   <EditFolderName
+//                     id={d.id}
+//                     name={d.name}
+//                     onSave={saveHandler}
+//                   />
+//                 </button>
+//                 <img className="cursor-pointer" onClick={()=>DeleteFolderFunc(d.id)} src={trashIcon} alt="trash icon"></img>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Folder;
+
+
+
+
+
+
+
+
+
+
+
+
+
+//***************************************************************/
+

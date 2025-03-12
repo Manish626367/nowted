@@ -1,0 +1,30 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+
+@import "tailwindcss";
+
+
+@theme{
+    --color-profileBorder:#B58DCD;
+    --color-mainBodyBgColor:rgb(250,246,246);
+    --font-kausan: "Kaushan Script", sans-serif;
+   
+    --color-MiddleCompo:#1C1C1C;
+    --color-createNew:#242424;
+    --color-slateColor:#181818;
+   
+}
+
+@layer base {
+    
+    body{
+       @apply bg-black text-white;
+    }
+    
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+
+
