@@ -84,7 +84,7 @@ function Folder() {
         />
       </div>
 
-      <div  className="h-60  overflow-y-auto scrollbar-hide">
+      <div  className="flex-grow  overflow-y-auto scrollbar-hide">
         {fetchedData.map((d) => (
           <div
             key={d.id}
