@@ -1,7 +1,8 @@
+import Middle from "../FolderComponents/Middle"
 import LeftContainer from "../LeftSideContainer/LeftContainer"
 
 import RestoreNoteCompo from "../MainComponents/RestoreNoteCompo"
-import ShowDeletedNote from "../trash/ShowDeletedNotes"
+
 
 
 function DeleteNoteIdRoute() {
@@ -13,7 +14,8 @@ function DeleteNoteIdRoute() {
       </div>
 
       <div className="w-7/28 bg-MiddleCompo h-screen px-5 overflow-y-auto scrollbar-hide">
-        <ShowDeletedNote />
+        {/* <ShowDeletedNote /> */}
+        <Middle type={'Deleted'}/>
       </div>
 
       <div className="w-15/28 h-screen overflow-y-auto px-5">

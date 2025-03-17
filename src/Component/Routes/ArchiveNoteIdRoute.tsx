@@ -1,4 +1,5 @@
-import ShowArchive from "../Archive/ShowArchive";
+
+import Middle from "../FolderComponents/Middle";
 import LeftContainer from "../LeftSideContainer/LeftContainer";
 
 import ShowNotesContent from "../MainComponents/ShowNotesContent";
@@ -11,7 +12,8 @@ function ArchiveNoteIdRoute() {
       </div>
 
       <div className="w-7/28 bg-MiddleCompo h-screen px-5 overflow-y-auto scrollbar-hide">
-        <ShowArchive />
+        {/* <ShowArchive /> */}
+        <Middle type={'Archived'}/>
       </div>
 
       <div className="w-15/28 h-screen overflow-y-auto px-5">

@@ -1,5 +1,5 @@
 
-import ShowFavorites from "../favorite/ShowFavorites"
+import Middle from "../FolderComponents/Middle"
 import LeftContainer from "../LeftSideContainer/LeftContainer"
 import ShowNotesContent from "../MainComponents/ShowNotesContent"
 
@@ -13,7 +13,8 @@ function FavoritesNoteId() {
       </div>
 
       <div className="w-7/28 bg-MiddleCompo h-screen px-5 overflow-y-auto scrollbar-hide">
-        <ShowFavorites />
+        {/* <ShowFavorites /> */}
+        <Middle type={"favorites"}/>
       </div>
 
       <div className="w-15/28 h-screen overflow-y-auto px-5">
