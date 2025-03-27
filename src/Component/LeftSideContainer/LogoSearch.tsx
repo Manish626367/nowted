@@ -18,7 +18,9 @@ function LogoSearch() {
          <img src={PencilImg} alt="Logo" className="h-4"></img>
         </div>
         <div>
-           <img src={SearchImg} onClick={()=>setisSearch((p)=>!p)} alt="search icon"></img>
+           {
+            !isSearch?<img src={SearchImg} onClick={()=>setisSearch((p)=>!p)} alt="search icon"></img>:<p className="cursor-pointer text-red-600" onClick={()=>setisSearch((p)=>!p)}>X</p>
+           }
         </div>
       </div>
       <div>

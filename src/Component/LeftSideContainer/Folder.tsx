@@ -1,12 +1,13 @@
 
 
+
 import axios from "axios";
 import createFolderIcon from "../../assets/images/CreateFolderIcon.png";
 import { useEffect, useState } from "react";
+import { useParams, NavLink } from "react-router-dom";
 import openedFolder from "../../assets/images/folder_open.svg";
 import closedFolder from "../../assets/images/folder_closed_Icon.svg";
 import EditFolderName from "./EditFolderName";
-import { NavLink } from "react-router-dom";
 import trashIcon from "../../assets/images/trash.svg";
 
 interface FolderDataType {
@@ -15,12 +16,9 @@ interface FolderDataType {
 }
 
 function Folder() {
-
+  const { folderId } = useParams(); // Access folderId from URL params
   const GetFolderAPI = "https://nowted-server.remotestate.com/folders";
   const [fetchedData, setFetchedData] = useState<FolderDataType[]>([]);
-  const [BgColorId, setBgColorId] = useState("");
-
-
 
   const getFolderData = async () => {
     try {
@@ -31,24 +29,21 @@ function Folder() {
       }));
 
       setFetchedData(data);
-      if (data.length !== 0) {
-        setBgColorId("");
-      }
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    getFolderData();
+    getFolderData(); 
   }, []);
 
   const handleDelete = async (folderId: string) => {
-      const DeleteApi = `https://nowted-server.remotestate.com/folders/${folderId}`
+    const DeleteApi = `https://nowted-server.remotestate.com/folders/${folderId}`;
     try {
       await axios.delete(DeleteApi);
       setFetchedData((prev) => prev.filter((folder) => folder.id !== folderId));
-      alert("successfully deleted Folder !")
+      alert("Successfully deleted Folder!");
       getFolderData();
     } catch (error) {
       console.error("Error deleting folder:", error);
@@ -56,21 +51,20 @@ function Folder() {
   };
 
   const AddNewFolder = async () => {
-      const folderPostApi = `https://nowted-server.remotestate.com/folders`
-      try {
-         await axios.post(folderPostApi, {
-          name: "New folder 3",
-        });
-      
-        alert("successfully created New Folder !")
-       
-      } catch (error) {
-        console.log(error);
-        alert("Error in creating Folder")
-      }
+    const folderPostApi = `https://nowted-server.remotestate.com/folders`;
+    try {
+      await axios.post(folderPostApi, {
+        name: "New folder 3",
+      });
 
-      getFolderData();
-    };
+      alert("Successfully created New Folder!");
+    } catch (error) {
+      console.log(error);
+      alert("Error in creating Folder");
+    }
+
+    getFolderData();
+  };
 
   return (
     <div className="w-full text-gray-400 font-semibold gap-1">
@@ -84,26 +78,30 @@ function Folder() {
         />
       </div>
 
-      <div  className="flex-grow  overflow-y-auto scrollbar-hide">
+      <div className="flex-grow overflow-y-auto scrollbar-hide">
         {fetchedData.map((d) => (
           <div
             key={d.id}
-            className={`flex py-3 px-5 justify-between hover:bg-slate-800`}
+            className={`flex py-3 px-5 justify-between ${
+              d.id === folderId ? "bg-slate-800" : ""
+            }`}
           >
             <NavLink
               to={`/${d.name}/${d.id}`}
               className="flex flex-row w-full gap-4 cursor-pointer"
-              onClick={() => setBgColorId(d.id)}
             >
-              <img src={d.id === BgColorId ? openedFolder : closedFolder} alt="Folder Icon" />
+              <img src={d.id === folderId ? openedFolder : closedFolder} alt="Folder Icon" />
               <EditFolderName id={d.id} name={d.name} setFetchedData={setFetchedData} />
             </NavLink>
-           <NavLink to={"/"}> <img
-              className="cursor-pointer text-gray-400"
-              src={trashIcon}
-              alt="Delete Folder"
-              onClick={() => handleDelete(d.id)} 
-            /></NavLink>
+
+            <NavLink to={"/"}>
+              <img
+                className="cursor-pointer text-gray-400"
+                src={trashIcon}
+                alt="Delete Folder"
+                onClick={() => handleDelete(d.id)}
+              />
+            </NavLink>
           </div>
         ))}
       </div>
@@ -112,9 +110,3 @@ function Folder() {
 }
 
 export default Folder;
-
-
-
-
-
-
